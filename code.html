@@ -1,0 +1,123 @@
+/* ============================================================
+   c_concepts_demo.c
+   Demonstrates in one program:
+   - Keywords            - Data types
+   - Format specifiers    - Escape sequence characters
+   - Variables            - Constants
+   - Storage classes       - Operators
+   - Control structures    - Arrays and Strings
+   ============================================================ */
+
+#include <stdio.h>      /* keyword-like preprocessor directive, not a keyword itself */
+#include <string.h>      /* for string functions like strcpy, strlen */
+
+/* ---- Constants ---- */
+#define PI 3.14159f              /* symbolic constant (preprocessor macro) */
+const int MAX_STUDENTS = 5;      /* 'const' keyword -> qualified constant */
+
+/* ---- Function prototype (uses keywords: int, void) ---- */
+void showEscapeSequences(void);
+
+int main(void)
+{
+    /* ---------------- Data types & Variables ---------------- */
+    int age = 21;                 /* keyword: int   -> integer data type   */
+    float height = 5.9f;          /* keyword: float -> floating point type */
+    double distance = 12345.6789; /* keyword: double -> double precision   */
+    char grade = 'A';             /* keyword: char  -> character data type */
+    char name[20] = "Prakash";    /* array of char -> string               */
+
+    /* ---------------- Storage classes ---------------- */
+    auto int localVar = 10;              /* keyword: auto (default, rarely written) */
+    static int counter = 0;              /* keyword: static -> retains value between calls */
+    register int fastVar = 100;          /* keyword: register -> suggests CPU register storage */
+    extern int externalDemo;             /* keyword: extern -> declared, defined below main */
+
+    counter++;   /* demonstrates static variable retaining value */
+
+    /* ---------------- Operators ---------------- */
+    int a = 10, b = 3;
+    int sum = a + b;          /* arithmetic operator */
+    int rem = a % b;          /* modulus operator */
+    int isEqual = (a == b);   /* relational operator */
+    int logicalAnd = (a > 5 && b > 0);   /* logical operator */
+    int bitwiseAnd = a & b;              /* bitwise operator */
+    a += 5;                              /* assignment operator */
+
+    /* ---------------- Arrays ---------------- */
+    int marks[5] = {85, 90, 78, 92, 88};  /* array data type */
+    int total = 0;
+
+    /* ---------------- Control structures ---------------- */
+
+    /* if-else (selection / decision control) */
+    if (age >= 18) {
+        printf("Status: Adult\n");
+    } else {
+        printf("Status: Minor\n");
+    }
+
+    /* for loop (iteration control) - sums array elements */
+    for (int i = 0; i < 5; i++) {
+        total += marks[i];
+    }
+
+    /* while loop */
+    int n = 3;
+    while (n > 0) {
+        printf("Countdown: %d\n", n);   /* %d = integer format specifier */
+        n--;
+    }
+
+    /* switch (multi-way selection control) */
+    switch (grade) {
+        case 'A':
+            printf("Excellent!\n");
+            break;
+        case 'B':
+            printf("Good!\n");
+            break;
+        default:
+            printf("Keep Trying!\n");
+    }
+
+    /* ---------------- Format specifiers ---------------- */
+    printf("\n--- Student Record ---\n");
+    printf("Name    : %s\n", name);      /* %s = string */
+    printf("Age     : %d\n", age);       /* %d = int    */
+    printf("Height  : %.1f ft\n", height); /* %f = float */
+    printf("Distance: %.4lf km\n", distance); /* %lf = double */
+    printf("Grade   : %c\n", grade);     /* %c = char   */
+    printf("Address : %p\n", (void*)&age); /* %p = pointer/address */
+
+    printf("\n--- Calculations ---\n");
+    printf("Sum = %d, Remainder = %d\n", sum, rem);
+    printf("a == b ? %d\n", isEqual);
+    printf("Logical AND result: %d\n", logicalAnd);
+    printf("Bitwise AND result: %d\n", bitwiseAnd);
+    printf("Total Marks = %d\n", total);
+    printf("Static counter value = %d\n", counter);
+    printf("Local(auto) = %d, Register = %d\n", localVar, fastVar);
+    printf("Max Students Constant = %d\n", MAX_STUDENTS);
+    printf("PI Constant = %.2f\n", PI);
+    printf("String length of name = %lu\n", (unsigned long)strlen(name));
+
+    showEscapeSequences();
+
+    return 0;   /* keyword: return */
+}
+
+/* ---------------- Escape sequence demo function ---------------- */
+void showEscapeSequences(void)
+{
+    printf("\n--- Escape Sequences ---\n");
+    printf("Newline:\tHello\nWorld\n");     /* \t tab, \n newline */
+    printf("Quote: \"C Programming\"\n");    /* \" double quote   */
+    printf("Backslash: C:\\Users\\Name\n"); /* \\ backslash      */
+    printf("Alert Sound: \a\n");            /* \a alert (bell)   */
+    printf("Carriage Return Demo: abc\rXYZ\n"); /* \r carriage return */
+    printf("Backspace Demo: abc\bdef\n");   /* \b backspace      */
+}
+
+/* extern variable defined outside main */
+int externalDemo = 999;
